@@ -1,0 +1,127 @@
+O que é Angular
+
+- Framework javascript
+- Criar aplicações web SPA baseada em componentes
+
+TypeScript
+
+- Criada pela Microsoft
+- Orientada a objetos
+- Tipagem forte
+- Código escrito em TypeScript é compilado para javascript
+
+Componente
+
+- HTML, CSS e TS
+<app-home></app-home>
+- componentes no mesmo módulo, não precisa exportar o modulo
+
+Atributos de um módulo:
+
+- Declarations (components, diretivas, pipes)
+- Imports (module A, module B, module C)
+- Exports (components, diretivas, pipes)
+- Providers (serive A, serive B, serive C)
+- Bootstrap (app component)
+
+Diretivas
+
+* Atributos
+- alterar a aparencia (css)
+- comportamento (em um botão faz chamada de uma função)
+
+* Estrutural
+- altera a DOM adicionando ou removendo elementos
+- *ngIf, *ngFor
+
+Decorator
+- evitar herança
+- @Decorator 
+- define que a classe tem uma função no projeto
+
+Property Binding
+  Exemplo:
+-> HTML  
+  <table [dataSource]="products">
+  </table>
+
+-> TypeScript
+products: Product[];
+
+Ao utilizar o [] no dataSource, ele faz a ligação com o TS, quando não utiliza o [], 
+ele interpreta como atributo do HTML.
+
+Event Binding
+Utiliza os parenteses para apontar para a função.
+
+<button mat-raised-button (click)="createProduct()" color="primary">Salvar</button>
+
+One Way Data Binding
+O que altera no TS, altera no HTML
+OBS: Sempre do TypeScript para o HTML
+  Exemplo:
+-> HTML
+  <input [value]="nome">
+
+-> TypeScript
+  nome: string;
+
+Se a variável nome estiver com valor Maria, o input receberá o nome Maria, 
+se alterar no TS para Ana, no input será Ana
+
+Two Way Data Binding
+Se alterar no TS vai atualizar no HTML, e se alterar no HTML ele altera no TS
+
+<input [(ngModel)]="nome">
+
+Angular Router
+/home
+/produto
+/usuario
+
+Angular Pipes
+- Formata para data, real, etc
+<p>
+    O Vencimento é
+    {{ produto.vencimento | date }}
+</p>
+
+Com parametros
+
+<td mat-cell *matCellDef="let product">
+    {{ product.preco | currency: 'BRL' }}
+</td>
+
+<p>
+    O vencimento é
+    {{ produto.vencimento | date: 'fullDate' | uppercase }}
+</p>
+
+
+Programação Reativa
+* Utiliza o ReactiveX
+
+import { Observable } from "rxjs";
+
+Padrão Observer
+-> Padrão orientado a Evento
+
+Cada observer tem que ser registrado no Subject e o Subject detecta o evento
+
+- callbacks -> promises (encadear várias chamadas) -> Observables (reusável, stream dados, operadores)
+
+Services
+
+São classes que têm como principal objetivo organizar e compartilhar métodos e dados entre componentes.
+
+Injeção de dependência
+
+É um padrão no qual a classe recebe as dependências de uma fonte externa ao invés de criar por conta própria.
+
+Classe A depende da classe B, ao invés da classe A criar a classe B, ela irá receber a classe B.
+
+Services são singletons dentro do escopo de um injector.
+
+Injetores:
+ModuleInjector (root por exemplo, referencia ao app.module) @NgModule, @Injectable
+ElementInjector (@Directive, @Component)
